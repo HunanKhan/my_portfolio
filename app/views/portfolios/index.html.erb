@@ -1,0 +1,15 @@
+<h1>Portfolio Items</h1>
+
+<%= link_to "New Portfolio", new_portfolio_path, class: "btn btn-success" %>
+
+<% @portfolios.each do |portfolio| %>
+    <p><%=portfolio.title%></p>
+    <p><%=portfolio.subtitle%></p>
+    <p><%=portfolio.body%></p>
+    <p><%=portfolio.main_image %></p>
+    <p><%=image_tag portfolio.thumb_image unless portfolio.thumb_image.nil?%></p>
+    <div class="btn-group">
+        <%= link_to "Edit", edit_portfolio_path(portfolio), class: "btn btn-primary" %>
+        <%= link_to "Delete", portfolio_path(portfolio), class: "btn btn-danger", data: {turbo_method: :delete, turbo_confirm: "Are you sure"} %>
+    </div>
+<%end%>
